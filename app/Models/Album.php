@@ -17,6 +17,15 @@ class Album extends Model
     {
      return $this->hasMany(Galeri::class, 'album_id');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($album) {
+            $album->galeri()->delete();
+        });
+    }
     
 }
 

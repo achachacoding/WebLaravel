@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kategori;
+use App\Models\Berit;
 
 class KategoriController extends Controller
 {
@@ -121,13 +122,21 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::find($id);
 
-        $kategori->delete();
+        if (!$kategori) {
+        return redirect('/admin/kategori')->with('error', 'Kategori tidak ditemukan!');
+        }
 
         try {
-          // Jika berhasil
-        return redirect('/admin/kategori')->with('success', 'Data berhasil dihapus!');
+        // Hapus berita yang terkait dengan kategori ini
+        foreach ($kategori->berita as $berita) {
+            $berita->delete();
+        }
+
+        // Hapus kategori
+        $kategori->delete();
+
+        return redirect('/admin/kategori')->with('success', 'Data berhasil dihapus beserta berita terkait!');
         } catch (\Exception $e) {
-        // Jika gagal
         return redirect('/admin/kategori')->with('error', 'Gagal menghapus data: ' . $e->getMessage());
         }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Album;
+use App\Models\Galeri;
 use File;
 
 class AlbumController extends Controller
@@ -147,21 +148,33 @@ class AlbumController extends Controller
     public function destroy($id)
     {
 
-      $album = Album::find($id);
+       $album = Album::find($id);
 
-      $path = 'album/';
+        if (!$album) {
+        return redirect('/admin/album')->with('error', 'Album tidak ditemukan!');
+        }
 
-        if (File::exists(public_path($path . $album->foto))) {
+        $path = 'album/';
+
+        try {
+        // Hapus file foto album (jika ada)
+        if ($album->foto && File::exists(public_path($path . $album->foto))) {
             File::delete(public_path($path . $album->foto));
         }
 
-      $album->delete();
+        // Hapus foto-foto galeri terkait
+        foreach ($album->galeri as $galeri) {
+            if ($galeri->foto && File::exists(public_path('galeri/' . $galeri->foto))) {
+                File::delete(public_path('galeri/' . $galeri->foto));
+            }
+        $galeri->delete();
+        }
 
-       try {
-          // Jika berhasil
+        // Hapus album
+        $album->delete();
+
         return redirect('/admin/album')->with('success', 'Data berhasil dihapus!');
         } catch (\Exception $e) {
-        // Jika gagal
         return redirect('/admin/album')->with('error', 'Gagal menghapus data: ' . $e->getMessage());
         }
     }
