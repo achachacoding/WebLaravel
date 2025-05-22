@@ -10,6 +10,7 @@
           <li><a class="" href="/">Home</a></li>
           <li><a href="/berita">Berita</a></li>
           <li><a href="/buku">Buku</a></li>
+          <li><a href="/galery">Galeri</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

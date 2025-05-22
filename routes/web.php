@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BeritaPengunjungController;
 use App\Http\Controllers\BukuPengunjungController;
+use App\Http\Controllers\GaleriPengunjungController;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UsersController;
@@ -33,6 +34,10 @@ Route::get('/berita', [BeritaPengunjungController::class, 'index']);
 Route::get('/berita/{berita_id}', [BeritaPengunjungController::class, 'detail']);
 
 Route::get('/buku', [BukuPengunjungController::class, 'index']);
+
+Route::get('/galery', [GaleriPengunjungController::class, 'index']);
+Route::get('/galery/{album_id}', [GaleriPengunjungController::class, 'detail']);
+
 
 
 // Route untuk /admin, redirect ke login

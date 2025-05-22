@@ -15,7 +15,7 @@ class Album extends Model
 
     public function galeri()
     {
-     return $this->hasMany(Galeri::class. 'album_id');
+     return $this->hasMany(Galeri::class, 'album_id');
     }
     
 }

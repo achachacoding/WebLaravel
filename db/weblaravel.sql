@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2025 at 02:31 PM
+-- Generation Time: May 22, 2025 at 11:29 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -121,6 +121,15 @@ CREATE TABLE `galeri` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `galeri`
+--
+
+INSERT INTO `galeri` (`id`, `nama_galeri`, `album_id`, `foto`, `created_at`, `updated_at`) VALUES
+(1, 'Musik', 1, '1747870503_download.jpeg', '2025-05-21 16:35:03', '2025-05-21 16:35:03'),
+(2, 'Coding', 3, '1747870541_3RMiqI4r.jpg', '2025-05-21 16:35:41', '2025-05-21 16:35:41'),
+(4, 'aespa', 1, '1747897485_1302c21f90acafa97e9cf5947a56006d.jpg', '2025-05-22 00:04:45', '2025-05-22 00:04:45');
 
 -- --------------------------------------------------------
 
@@ -324,7 +333,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `galeri`
 --
 ALTER TABLE `galeri`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `kategori`
